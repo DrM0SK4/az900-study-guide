@@ -204,7 +204,7 @@
 - ### Describe application hosting options, including the Web Apps feature of Azure App Service, containers, and virtual machines
 
   > If you need to host your application on Azure, you might initially turn to a virtual machine (VM) or container. There are other hosting options that you can use with Azure, including Azure App Service.\
-
+  >
   > Azure App Service is an HTTP-based service for hosting web applications, REST APIs, and mobile back ends. It offers automatic scaling and high availability
   >
   > - Deployment and management are integrated into the platform.
@@ -245,7 +245,6 @@
   > > Connect virtual networks (Peering)
   > > > You can link virtual networks together by using virtual network peering. These virtual networks can be in separate regions, which allows you to create a global interconnected network through Azure.\
    Peering allows two virtual networks to connect directly to each other. Network traffic between peered networks is private, and travels on the Microsoft backbone network, never entering the public internet.\
-
   > > > User-defined routes (UDR) allow you to control the routing tables between subnets within a virtual network or between virtual networks. This allows for greater control over network traffic flow.
 
 - ### Virtual private networks
@@ -275,7 +274,7 @@
 - ### Azure ExpressRoute
 
   > [link](https://docs.microsoft.com/en-gb/learn/modules/describe-azure-compute-networking-services/11-expressroute)\
-
+  >
   > Azure ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection, with the help of a connectivity provider. This connection is called an ExpressRoute Circuit.\
    This allows you to connect offices, datacenters, or other facilities to the Microsoft cloud. Each location would have its own ExpressRoute circuit.
   >
@@ -289,7 +288,7 @@
   >
   > - DNS domains in Azure DNS are hosted on Azure's global network of DNS name servers, providing resiliency and high availability
   > - Azure DNS is based on Azure Resource Manager, which provides features such as:
-
+  >
   > > - Azure role-based access control (Azure RBAC) to control who has access to specific actions for your organization.
   > > - Activity logs to monitor how a user in your organization modified a resource or to find an error when troubleshooting.
   > > - Resource locking to lock a subscription, resource group, or resource. Locking prevents other users in your organization from accidentally deleting or modifying critical resources.
@@ -362,6 +361,7 @@
 - ### Describe directory services in Azure, including Azure Active Directory (Azure AD) and Azure Active Directory Domain Services (Azure AD DS)
   >
   > - Azure Active Directory (Azure AD) is a directory service that enables you to sign in and access both Microsoft cloud applications and cloud applications that you develop. It is Microsoft's cloud-based identity and access management service.  Azure AD can detect sign-in attempts from unexpected locations or unknown devices
+  > - Choose premium if you want to piublish on-premises web apps using AD and if you want your on-premise user to be able to reset their own password. SSO is available with free
   > - Services offered by Azure AD:
   >  
   > | Authentication | Single sign-on | Application Management | Device Management |
@@ -426,6 +426,8 @@
 - ### Describe the purpose of Microsoft Defender for Cloud
 >
 > - Defender for Cloud is a monitoring tool for security posture management and threat protection. It monitors your cloud, on-premises, hybrid, and multi-cloud environments to provide guidance and notifications aimed strengthening your security posture
+> - in the regulatory compliance dashboard you can see the number of passing and failing assesments and overall complaince score
+> - ![defender for cloud](https://docs.microsoft.com/en-us/azure/defender-for-cloud/media/secure-score-security-controls/single-secure-score-via-mobile.png)
 > - When necessary, Defender for Cloud can automatically deploy a Log Analytics agent to gather security-related data.\
 For Azure machines, deployment is handled directly.\
 For hybrid and multi-cloud environments, Microsoft Defender plans are extended to non Azure machines with the help of Azure Arc
@@ -442,18 +444,48 @@ Identify and track vulnerabilities.
 
 </details>
   
-<!-- <details> -->
+<details>
   <summary> Describe Azure management and governance (30—35%) </summary>
 
 ## Describe cost management in Azure
 
 - ### Describe factors that can affect costs in Azure
+  >
+  > - That OpEx cost can be impacted by many factors. Some of the impacting factors are:
+  >
+  > |Resource type | Consumption | Maintenance | Geography | Subscription type | Azure Marketplace |
+  > | --- | --- |--- |--- |--- |--- |
+  > || If you use more compute this cycle, you pay more. If you use less in the current cycle, you pay less||Creating the same storage account in different regions may show different costs |Some Azure subscription types also include usage allowances, which affect costs.||
+  > ||Azure also offers the ability to commit to using a set amount of cloud resources in advance and receiving discounts on those “reserved” resources||| Azure free trial subscription provides access to a number of Azure products that are free for 12 months. It also includes credit to spend within your first 30 days of sign-up. You'll get access to more than 25 products that are always free (based on resource and region availability).||
 
 - ### Compare the Pricing calculator and the Total Cost of Ownership (TCO) calculator
-
+  >
+  > - The pricing calculator is designed to give you an estimated cost for provisioning resources in Azure.\
+  The pricing calculator’s focus is on the cost of provisioned resources in Azure.
+  > - The TCO calculator is designed to help you compare the costs for running an on-premises infrastructure compared to an Azure Cloud infrastructure
+  > - The TCO calculator involves three step
+  > ![Tco calculator steps](https://docs.microsoft.com/en-gb/learn/wwl-azure/describe-cost-management-azure/media/total-cost-ownership-calculator-steps-76e927a5.png)
+  >
 - ### Describe the Azure Cost Management and Billing tool
-
+  >
+  > - Cost Management is a SAAS that provides the ability to quickly check Azure resource costs, create alerts based on resource spend, and create budgets that can be used to automate management of resources.
+  > Cost analysis is a subset of Cost Management that provides a quick visual for your Azure costs.\
+  It allows you to  analyze your organizational costs. You can view aggregated costs by organization to understand where costs are accrued and to identify spending trends
+  > Cost alerts provide a single location to quickly check on all of the different alert types that may show up in the Cost Management service. Three types of alerts:
+  >
+  > | Budget | Credit |  Department spending quota|
+  > | --- | --- | --- |
+  > | notify you when spending, based on usage or cost, reaches or exceeds the amount defined in the alert condition of the budget. | Credit alerts notify you when your Azure credit monetary commitments are consumed| Department spending quota alerts notify you when department spending reaches a fixed threshold of the quota|
+  > |Budget alerts are generated automatically whenever the budget alert conditions are met|Credit alerts are generated automatically at 90% and at 100% of your Azure credit balance|Whenever a threshold is met, it generates an email to department owners, and appears in cost alerts|
+  >
+  > - A budget is where you set a spending limit for Azure. You can set budgets based on a subscription, resource group, service type, or other criteria. When you set a budget, you will also set a budget alert. When the budget hits the budget alert level, it will trigger a budget alert that shows up in the cost alerts area.
+  > - Azure Reservations are a benefit offered by Microsoft that can save you up to 72% as compared to pay-as-you-go prices.
+  >
 - ### Describe the purpose of tags
+  >
+  > - Tags provide extra information, or metadata, about your resources. It is a way to organize resources.
+  > - You can add, modify, or delete resource tags through Windows PowerShell, the Azure CLI, Azure Resource Manager templates, the REST API, or the Azure portal.
+  > - You can use Azure Policy to enforce tagging rules and conventions.
 
 ## Describe features and tools in Azure for governance and compliance
 
