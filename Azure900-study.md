@@ -17,8 +17,8 @@
 
   > | Private                                                           | Public                                                                    | Hybrid                                                                                                                      | Multi-cloud                                                                                                                          |
   > | ----------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-  > | It’s a cloud built, controlled, and maintained by a single entity | built, controlled, and maintained by a third-party cloud provider         | uses both public and private clouds in an inter-connected environment                                                       | use multiple public cloud providers. Maybe you use different features from different cloud providers                                 |
-  > | provides much greater control for the company and greater cost    | anyone that wants to purchase cloud services can access and use resources | users can flexibly choose which services to keep in public cloud and which to deploy to their private cloud infrastructure. | a multi-cloud environment you deal with two (or more) public cloud providers and manage resources and security in both environments. |
+  > | It’s a cloud built, controlled, and maintained by a single entity. It is required to be on a private network | built, controlled, and maintained by a third-party cloud provider         | uses both public and private clouds in an inter-connected environment                                                       | use multiple public cloud providers. Maybe you use different features from different cloud providers                                 |
+  > | provides much greater control for the company and greater cost    | anyone that wants to purchase cloud services can access and use resources | users can flexibly choose which services to keep in public cloud and which to deploy to their private cloud infrastructure. | a multi-cloud environment you deal with two (or more) public cloud providers and manage resources and security in both environments. The company can augment on-premises resouces by proviind overflow capaciy.|
   >
   > > Azure Arc: set of technologies that helps manage your cloud environment
 
@@ -189,7 +189,7 @@
   > | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   > | let you create and manage a group of identical, load-balanced VMs                                                                               | Availability sets are designed to ensure that VMs stagger updates and have varied power and network connectivity, preventing you from losing all your VMs with a single network or power failure.                  | Is a desktop and application virtualization service that runs on the cloud. It enables you to use a cloud-hosted version of Windows from any location                                                                                                                         |
   > | Scale sets allow you to centrally manage, configure, and update a large number of VMs                                                           | The update domain groups VMs that can be rebooted at the same time. This allows you to apply updates while knowing that only one update domain grouping will be offline at a time                                  | Provides centralized security management for users' desktops with Azure Active Directory.\
-   You can enable multifactor authentication to secure user sign-ins.\
+   You can enable multifactor authentication to secure user sign-ins. An azure multi-factor authentication server is ONLY REQUIRED for authentication when support users locate on on-premises Active Directory \
    You can also secure access to data by assigning granular role-based access controls (RBACs) to users. |
   > | The number of VM instances can automatically increase or decrease in response to demand, or you can set it to scale based on a defined schedule | The fault domain groups your VMs by common power source and network switch. This helps protect against a physical power or networking failure as the Vms are connected to different power and networking resources | the data and apps are separated from the local hardware.\
    user sessions are isolated in both single and multi-session environments\
@@ -276,6 +276,7 @@
   > [link](https://docs.microsoft.com/en-gb/learn/modules/describe-azure-compute-networking-services/11-expressroute)\
   >
   > Azure ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection, with the help of a connectivity provider. This connection is called an ExpressRoute Circuit.\
+  > IT IS NOT USED TO SECURE TRAFFIC BETWEEN PRIVATE NETWORKS
    This allows you to connect offices, datacenters, or other facilities to the Microsoft cloud. Each location would have its own ExpressRoute circuit.
   >
   > - Connectivity can be from an any-to-any (IP VPN) network, a point-to-point Ethernet network, or a virtual cross-connection through a connectivity provider at a colocation facility
@@ -551,6 +552,7 @@ Identify and track vulnerabilities.
 - ### Describe the purpose of Azure Advisor
   >
   > - Azure Advisor evaluates your Azure resources and makes recommendations to help improve reliability, security, and performance
+  > - Azure Advisor integrates with Microsoft Defender for Cloud to help prevent, detetct and respond to threats to Azure resources.
   > - The recommendations are available via the Azure portal and the API, and you can set up notifications to alert you to new recommendations.
   > - When you're in the Azure portal, the Advisor dashboard displays personalized recommendations for all your subscriptions
   >
