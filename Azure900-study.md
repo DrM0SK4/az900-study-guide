@@ -8,15 +8,20 @@
   > Cloud computing is the delivery of computing services over the internet.
 
 - ### Describe the shared responsibility model
-  > [<img src="https://docs.microsoft.com/en-us/learn/wwl-azure/describe-cloud-compute/media/shared-responsibility-b3829bfe.svg">](http://google.com.au/)
+
+  > ![responsabilty model](https://docs.microsoft.com/en-us/learn/wwl-azure/describe-cloud-compute/media/shared-responsibility-b3829bfe.svg)
+
 - ### Define cloud models, including public, private, and hybrid
+
   > | Private                                                           | Public                                                                    | Hybrid                                                                                                                      | Multi-cloud                                                                                                                          |
   > | ----------------------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
   > | It’s a cloud built, controlled, and maintained by a single entity | built, controlled, and maintained by a third-party cloud provider         | uses both public and private clouds in an inter-connected environment                                                       | use multiple public cloud providers. Maybe you use different features from different cloud providers                                 |
   > | provides much greater control for the company and greater cost    | anyone that wants to purchase cloud services can access and use resources | users can flexibly choose which services to keep in public cloud and which to deploy to their private cloud infrastructure. | a multi-cloud environment you deal with two (or more) public cloud providers and manage resources and security in both environments. |
   >
   > > Azure Arc: set of technologies that helps manage your cloud environment
+
 - ### Identify appropriate use cases for each cloud model
+
 - ### Describe the consumption-based model
 
   > | CapEx                                                         | OpEx                                             |
@@ -65,6 +70,7 @@
   > - Automatic patches and maintenanance (PAAS):
 
 - ### Describe the benefits of manageability in the cloud
+
   > In the cloud, you can:
   >
   > - Automatically scale resource deployment based on need.
@@ -80,15 +86,22 @@
 ## Describe cloud service types
 
 - ### Describe infrastructure as a service (IaaS)
+  >
   > - most flexible category of cloud services
   > - With IaaS, you’re essentially renting the hardware in a cloud datacenter, , but what you do with that hardware is up to you.
+  >
 - ### Describe platform as a service (PaaS)
+  >
   > - middle ground between renting space in a datacenter (IAAS) and paying for a complete and deployed solution (SAAS)
   > - In a PaaS scenario, you don't have to worry about the licensing or patching for operating systems and databases.
+  >
 - ### Describe software as a service (SaaS)
+  >
   > - The most complete cloud service model from a product perspective. Least flexible, it’s also the easiest to get up and running
   > - you’re essentially renting or using a fully developed application. Email, financial software, messaging applications, and connectivity software are all common examples of a SaaS implementation.
+  >
 - ### Identify appropriate use cases for each cloud service (IaaS, PaaS, SaaS)
+
   > Scenarios
   > | IAAS | PAAS | SAAS |
   > | --- | --- | --- |
@@ -103,29 +116,68 @@
 ## Describe the core architectural components of Azure
 
 - ### Describe Azure regional, regional pairs, and sovereign regions
-- ### Describe availability zones
-- ### Describe Azure datacenters
-- ### Describe Azure resources and resource groups
-- ### Describe subscriptions
-- ### Describe management groups
-- ### Describe the hierarchy of resource groups, subscriptions, and management groups
+  
+  > | Regional Pairs | Sovereign Regions |
+  > | --- | --- |
+  > |  Most Azure regions are paired with another region within the same geography (such as US, Europe, or Asia) at least 300 miles away   |  Sovereign regions are instances of Azure that are isolated from the main instance of Azure. You may need to use a sovereign region for compliance or legal purposes   |
+  >
+  > -
+  >
+  > -
 
+- ### Describe availability zones
+  >
+  > - Availability zones are physically separate datacenters within an Azure region. Each availability zone is made up of one or more datacenters equipped with independent power, cooling, and networking
+  > ![availability zone](https://docs.microsoft.com/en-gb/learn/wwl-azure/describe-core-architectural-components-of-azure/media/availability-zones-c22f95a3.png)
+
+- ### Describe Azure datacenters
+  >
+  > - the datacenters are the same as large corporate datacenters. They’re facilities with resources arranged in racks, with dedicated power, cooling, and networking infrastructure
+
+- ### Describe Azure resources and resource groups
+
+  > ![azure resources and resource groups](https://docs.microsoft.com/en-gb/learn/wwl-azure/describe-core-architectural-components-of-azure/media/account-scope-levels-9ceb3abd.png)
+  >
+  > - A resource is the basic building block of Azure. Anything you create, provision, deploy, etc. is a resource
+  > - Resource groups are simply groupings of resources. When you create a resource, you’re required to place it into a resource group. While a resource group can contain many resources, a single resource can only be in one resource group at a time.
+  > - When you apply an action to a resource group, that action will apply to all the resources within the resource group
+  > - If you delete a resource group, all the resources will be deleted
+  > - If you grant or deny access to a resource group, you’ve granted or denied access to all the resources within the resource group
+
+- ### Describe subscriptions
+
+  > - subscriptions are a unit of management, billing, and scale. Similar to how resource groups are a way to logically organize resources, subscriptions allow you to logically organize your resource groups and facilitate billing.
+  > - An account can have multiple subscriptions, but it’s only required to have one
+  > - A subscription provides you with authenticated and authorized access to Azure products and services.
+
+- ### Describe management groups
+
+- ### Describe the hierarchy of resource groups, subscriptions, and management groups
+  >
+  > - an Azure account can have multiple subscriptions that can have multiple resource groups
+  >
 ## Describe Azure compute and networking services
 
 - ### Compare compute types, including container instances, virtual machines (VMs), and functions
+
   | Container Instances                                                                                                                       | Virtual Machines                                             | Functions                                                                                                                                                                                                                                                                                                                                                                                     |
   | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | Containers are a virtualization environment. <br> You can run multiple containers on a virtual host </br> You don't have to manage the OS | IAAS where you need to set Size, Storage disk and networking | Azure Functions is an event-driven, serverless compute option that doesn’t require maintaining virtual machines or containers. It is ideal when you're only concerned about the code running your service and not about the underlying platform or infrastructure <br> Functions scale automatically based on demand </br> you're only charged for the CPU time used while your function runs |
+
 - ### Describe VM options: including Azure Virtual Machines, Azure Virtual Machine Scale Sets, availability sets, and Azure Virtual Desktop
+
   > | Azure Virtual Machine scale sets                                                                                                                | Azure Virtual Machine availability sets                                                                                                                                                                            | Azure Virtual Desktop                                                                                                                                                                                                                                                         |
   > | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   > | let you create and manage a group of identical, load-balanced VMs                                                                               | Availability sets are designed to ensure that VMs stagger updates and have varied power and network connectivity, preventing you from losing all your VMs with a single network or power failure.                  | Is a desktop and application virtualization service that runs on the cloud. It enables you to use a cloud-hosted version of Windows from any location                                                                                                                         |
   > | Scale sets allow you to centrally manage, configure, and update a large number of VMs                                                           | The update domain groups VMs that can be rebooted at the same time. This allows you to apply updates while knowing that only one update domain grouping will be offline at a time                                  | Provides centralized security management for users' desktops with Azure Active Directory. <br> You can enable multifactor authentication to secure user sign-ins. </br> You can also secure access to data by assigning granular role-based access controls (RBACs) to users. |
   > | The number of VM instances can automatically increase or decrease in response to demand, or you can set it to scale based on a defined schedule | The fault domain groups your VMs by common power source and network switch. This helps protect against a physical power or networking failure as the Vms are connected to different power and networking resources | the data and apps are separated from the local hardware. <br> user sessions are isolated in both single and multi-session environments </br>                                                                                                                                  |
+
 - ### Describe resources required for virtual machines
+  >
   > - Size (purpose, number of processor cores, and amount of RAM)
   > - Storage disks (hard disk drives, solid state drives, etc.)
   > - Networking (virtual network, public IP address, and port configuration)
+  >
 - ### Describe application hosting options, including the Web Apps feature of Azure App Service, containers, and virtual machines
 
   > If you need to host your application on Azure, you might initially turn to a virtual machine (VM) or container. There are other hosting options that you can use with Azure, including Azure App Service. <br>
@@ -136,57 +188,66 @@
   > - Sites can be scaled quickly to handle high traffic loads.
   > - The built-in load balancing and traffic manager provide high availability.
   >   | Web apps | Api apps | WebJobs | Mobile apps |
+  >
   >   | --- | --- | --- | --- |
 
 - ### Describe virtual networking, including the purpose of Azure Virtual Networks, Azure virtual subnets, peering, Azure DNS, Azure VPN Gateway, and Azure ExpressRoute
 
   > - Azure Virtual Networking and Azure Virtual subnets enable Azure resources, such as VMs, web apps, and databases, to communicate with each other, with users on the internet, and with your on-premises client computers.
-
+  >
   > > Isolation and segmentation:
   > >
   > > > - Azure virtual network allows you to create multiple isolated virtual networks.
-
   > > Communicate between Azure resources
-  > >
   > > > - Virtual networks can connect not only VMs but other Azure resources, such as the App Service Environment for Power Apps, Azure Kubernetes Service, and Azure virtual machine scale sets.
   > > > - Service endpoints can connect to other Azure resource types, such as Azure SQL databases and storage accounts. This approach enables you to link multiple Azure resources to virtual networks to improve security and provide optimal routing between resources
-
   > > Communicate with on-premises resources
-  > >
   > > > Azure virtual networks enable you to link resources together in your on-premises environment and within your Azure subscription. There are three mechanisms for you to achieve this connectivity:
-  > >
   > > > - Point-to-site virtual private network connections are from a computer outside your organization back into your corporate network. <br>The client computer initiates an encrypted VPN connection to connect to the Azure virtual network.
   > > > - Site-to-site virtual private networks link your on-premises VPN device or gateway to the Azure VPN gateway in a virtual network. <br> The connection is encrypted and works over the internet.
   > > > - Azure ExpressRoute provides a dedicated private connectivity to Azure that doesn't travel over the internet.
-
   > > Route network traffic
-  > >
   > > > By default, Azure routes traffic between subnets on any connected virtual networks, on-premises networks, and the internet. To ovveride these settings you can:
-  > >
+  > > >
   > > > - Route tables allow you to define rules about how traffic should be directed. You can create custom route tables that control how packets are routed between subnets
   > > > - Border Gateway Protocol (BGP) works with Azure VPN gateways, Azure Route Server, or Azure ExpressRoute to propagate on-premises BGP routes to Azure virtual networks.
-
   > > Filter network traffic
-  > >
   > > > Azure virtual networks enable you to filter traffic between subnets by using the following approaches:
-  > >
+  > > >
   > > > - Network security groups are Azure resources that can contain multiple inbound and outbound security rules. You can define these rules to allow or block traffic, based on factors such as source and destination IP address, port, and protocol
   > > > - Network virtual appliances are specialized VMs that can be compared to a hardened network appliance. A network virtual appliance carries out a particular network function, such as running a firewall or performing wide area network (WAN) optimization
-
   > > Connect virtual networks (Peering)
-  > >
   > > > You can link virtual networks together by using virtual network peering. These virtual networks can be in separate regions, which allows you to create a global interconnected network through Azure. <br> Peering allows two virtual networks to connect directly to each other. Network traffic between peered networks is private, and travels on the Microsoft backbone network, never entering the public internet. </br>
-
   > > > User-defined routes (UDR) allow you to control the routing tables between subnets within a virtual network or between virtual networks. This allows for greater control over network traffic flow.
 
 - ### Virtual private networks
+
   > [link](https://docs.microsoft.com/en-gb/learn/modules/describe-azure-compute-networking-services/10-virtual-private-networks)
+  >
+  > - uses an encrypted tunnel within another network. VPNs are typically deployed to connect two or more trusted private networks to one another over an untrusted network (typically the public internet).<br> Traffic is encrypted while traveling over the untrusted network to prevent eavesdropping or other attacks. VPNs can enable networks to safely and securely share sensitive information
+
+- ### VPN gateways
+
+  > A VPN gateway is a type of virtual network gateway. Azure VPN Gateway instances are deployed in a dedicated subnet of the virtual network and enable the following connectivity
+  >
+  > - Connect on-premises datacenters to virtual networks through a site-to-site connection.
+  > - Connect individual devices to virtual networks through a point-to-site connection.
+  > - Connect virtual networks to other virtual networks through a network-to-network connection
+  > When you deploy a VPN gateway, you specify the VPN type: either policy-based or route-based
+  > | Policy-based VPN |  Route-based gateways |
+  > | --- | --- |
+  > |  specify statically the IP address of packets that should be encrypted through each tunnel |  IP routing (either static routes or dynamic routing protocols) decides which one of these tunnel interfaces to use when sending each packet. are the preferred connection method for on-premises devices |
+  > | | Connections between virtual networks <br> Point-to-site connections <br> Multisite connections <br> Coexistence with an Azure ExpressRoute gateway  |
+  > By default, VPN gateways are deployed as two instances in an active/standby
+  
 - ### Azure ExpressRoute
+
   > [link](https://docs.microsoft.com/en-gb/learn/modules/describe-azure-compute-networking-services/11-expressroute) <br>
   > Azure ExpressRoute lets you extend your on-premises networks into the Microsoft cloud over a private connection, with the help of a connectivity provider. This connection is called an ExpressRoute Circuit. <br> This allows you to connect offices, datacenters, or other facilities to the Microsoft cloud. Each location would have its own ExpressRoute circuit.
   >
   > - Connectivity can be from an any-to-any (IP VPN) network, a point-to-point Ethernet network, or a virtual cross-connection through a connectivity provider at a colocation facility
   > - ExpressRoute connections don't go over the public Internet. (reliability, faster, consistent latencies, and higher security than typical connections over the Internet)
+  >
 - ### Azure DNS
 
   > [link](https://docs.microsoft.com/en-gb/learn/modules/describe-azure-compute-networking-services/12-domain-name-system)
@@ -210,19 +271,33 @@
 ## Describe Azure storage services
 
 - ### Compare Azure storage services
+
 - ### Describe storage tiers
+
 - ### Describe redundancy options
+
 - ### Describe storage account options and storage types
+
 - ### Identify options for moving files, including AzCopy, Azure Storage Explorer, and Azure File Sync
+
 - ### Describe migration options, including Azure Migrate and Azure Data Box
+
 - ### Describe Azure identity, access, and security
+
 - ### Describe directory services in Azure, including Azure Active Directory (Azure AD) and Azure Active Directory Domain Services (Azure AD DS)
+
 - ### Describe authentication methods in Azure, including single sign- ###on (SSO), multifactor authentication, and passwordless
+
 - ### Describe external identities and guest access in Azure
+
 - ### Describe Azure AD Conditional Access
+
 - ### Describe Azure role- ###based access control (RBAC)
+
 - ### Describe the concept of Zero Trust
+
 - ### Describe the purpose of the defense in depth model
+
 - ### Describe the purpose of Microsoft Defender for Cloud
 
 </details>
@@ -233,28 +308,39 @@
 ## Describe cost management in Azure
 
 - ### Describe factors that can affect costs in Azure
+
 - ### Compare the Pricing calculator and the Total Cost of Ownership (TCO) calculator
+
 - ### Describe the Azure Cost Management and Billing tool
+
 - ### Describe the purpose of tags
 
 ## Describe features and tools in Azure for governance and compliance
 
 - ### Describe the purpose of Azure Blueprints
+
 - ### Describe the purpose of Azure Policy
+
 - ### Describe the purpose of resource locks
+
 - ### Describe the purpose of the Service Trust Portal
 
 ## Describe features and tools for managing and deploying Azure resources
 
 - ### Describe the Azure portal
+
 - ### Describe Azure Cloud Shell, including Azure CLI and Azure PowerShell
+
 - ### Describe the purpose of Azure Arc
+
 - ### Describe Azure Resource Manager and Azure Resource Manager templates (ARM templates)
 
 ## Describe monitoring tools in Azure
 
 - ### Describe the purpose of Azure Advisor
+
 - ### Describe Azure Service Health
+
 - ### Describe Azure Monitor, including Log Analytics, Azure Monitor alerts, and Application Insights
 
 </details>
