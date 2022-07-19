@@ -130,7 +130,8 @@
   >
   > - Availability zones are physically separate datacenters within an Azure region. Each availability zone is made up of one or more datacenters equipped with independent power, cooling, and networking
   > ![availability zone](https://docs.microsoft.com/en-gb/learn/wwl-azure/describe-core-architectural-components-of-azure/media/availability-zones-c22f95a3.png)
-
+  > - Deploying two or more instances of an Azure virtual machine across two or more availability zones raises the virtual machine SLA to 99.99 percent. (from 99.9 percent)
+  >
 - ### Describe Azure datacenters
   >
   > - the datacenters are the same as large corporate datacenters. They’re facilities with resources arranged in racks, with dedicated power, cooling, and networking infrastructure
@@ -372,8 +373,10 @@
   > | --- | --- | --- | --- |
   > | verifying identity to access applications and resources | enables you to remember only one username and one password to access multiple applications | You can manage your cloud and on-premises apps | supports the registration of devices. Registration enables devices to be managed through tools like Microsoft Intune
   >
-  > - One method of connecting Azure AD with your on-premises AD is using Azure AD Connect
+  > - ![azure-ad-connect](https://docs.microsoft.com/en-us/learn/azure-fundamentals/secure-access-azure-identity-services/media/3-azure-ad-connect.png)
+  > - Azure AD Connect connect your existing Active Directory installation (on-premise) with Azure AD (cloud)
   > - Azure AD Connect synchronizes changes between both identity systems, so you can use features like SSO, multifactor authentication, and self-service password reset under both systems.
+  > - Password writeback is a feature enabled with Azure AD Connect that allows password changes in the cloud to be written back to an existing on-premises directory in real time.
   >
   > - Azure Active Directory Domain Services: is a service that provides managed domain services such as domain join, group policy, lightweight directory access protocol (LDAP), and Kerberos/NTLM authentication
   > - An Azure AD DS managed domain lets you run legacy applications in the cloud that can't use modern authentication method
@@ -382,6 +385,7 @@
 - ### Describe authentication methods in Azure, including single sign-on (SSO), multifactor authentication, and passwordless
   >
   > - Authentication is the process of establishing the identity of a person, service, or device. It requires the person, service, or device to provide some type of credential to prove who they are.
+  > ![authN-authZ](https://docs.microsoft.com/en-us/learn/azure-fundamentals/secure-access-azure-identity-services/media/2-id-card-access.png)
   > - Single sign-on (SSO) enables a user to sign in one time and use that credential to access multiple resources and applications from different providers. For SSO to work, the different applications and providers must trust the initial authenticator
   > - Multifactor authentication is the process of prompting a user for an extra form (or factor) of identification during the sign-in process.
   > - Azure AD Multi-Factor Authentication is a Microsoft service that provides multifactor authentication capabilities. It provides an additional form of authentication during sign-in, such as a phone call or mobile app notification
@@ -396,6 +400,7 @@
   >
   > - Conditional Access is a tool that Azure Active Directory uses to allow (or deny) access to resources based on identity signals\
   A user might not be challenged for second authentication factor if they're at a known location. However, they might be challenged for a second authentication factor if their sign-in signals are unusual or they're at an unexpected location
+  > - To use Conditional Access, you need an Azure AD Premium P1 or P2 license. If you have a Microsoft 365 Business Premium license, you also have access to Conditional Access features
   >
 - ### Describe Azure role-based access control (RBAC)
   >
@@ -404,7 +409,10 @@
   ![rbac](https://docs.microsoft.com/en-gb/learn/wwl-azure/describe-azure-identity-access-security/media/role-based-access-scope-4b12a8f3.png)
   > - Azure RBAC is hierarchical, in that when you grant access at a parent scope, those permissions are inherited by all child scopes
   > - Azure RBAC is enforced on any action that's initiated against an Azure resource that passes through Azure Resource Manage
-  >
+  > - When you assign the Owner role to a user at the management group scope, that user can manage everything in all subscriptions within the management group.
+  > - When you assign the Reader role to a group at the subscription scope, the members of that group can view every resource group and resource within the subscription.
+  > - When you assign the Contributor role to an application at the resource group scope, the application can manage resources of all types within that resource group, but not other resource groups within the subscription.
+
 - ### Describe the concept of Zero Trust
   >
   > - Zero Trust is a security model that assumes the worst case scenario and protects resources with that expectation
@@ -426,6 +434,20 @@
   > | The physical security layer | The identity and access layer| The perimeter layer | The network layer | The compute layer| The application layer | The data layer|  
   > |---| --- | ---| --- | ---| --- |---|
   > |the first line of defense to protect computing hardware in the datacenter |controls access to infrastructure and change control | uses distributed denial of service (DDoS) protection to filter large-scale attacks before they can cause a denial of service for users | limits communication between resources through segmentation and access controls. | secures access to virtual machines.| helps ensure that applications are secure and free of security vulnerabilities. | controls access to business and customer data that you need to protect |
+
+- ### Describe Azure Firewall
+  >
+  > - A firewall is a network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules
+  > - Azure Firewall is a managed, cloud-based network security service that helps protect resources in your Azure virtual networks.
+  > - Azure Firewall provides a central location to create, enforce, and log application and network connectivity policies across subscriptions and virtual networks.
+  > - The service is integrated with Azure Monitor to enable logging and analytics.
+  >
+- ### Describe  Azure DDoS Protection
+  >
+  > - DDoS Protection identifies the attacker's attempt to overwhelm the network and blocks further traffic from them, ensuring that traffic never reaches Azure resources. Legitimate traffic from customers still flows into Azure without any interruption of service
+  >>
+  >> - The Basic service tier is automatically enabled for free as part of your Azure subscription.
+  >> - The Standard service tier provides additional mitigation capabilities that are tuned specifically to Azure Virtual Network resources
 
 - ### Describe the purpose of Microsoft Defender for Cloud
 >
@@ -457,7 +479,42 @@ Identify and track vulnerabilities.
   >
   > - Azure SQL Database is a platform as a service (PaaS) database engine. It handles most of the database-management functions — such as upgrading, patching, backups, and monitoring — without user involvemen
   > - You can migrate your existing SQL Server databases with minimal downtime by using the Azure Database Migration Service
+  > - Azure SQL Database only uses the default SQL_Latin1_General_CP1_CI_AS server collation
+
+- ### Explore Azure database for MySQL
   >
+  > - Azure Database for MySQL (PaaS)is a relational database service in the cloud and it's based on the MySQL Community Edition database engine, versions 5.6, 5.7, and 8.0
+  > - Azure Database for MySQL is the logical choice for existing LAMP stack applications
+
+- ### Explore Azure Database for PostgreSQL
+  >
+  > - Azure Database for PostgreSQL is a relational database service in the cloud. The server software is based on the community version of the open-source PostgreSQL database engine
+  > - Azure Database for PostgreSQL is available in two deployment options:
+  >>
+  >> - Single Server: The Single Server deployment option offers three pricing tiers:
+  >>
+  >>   | Basic|  General Purpose| Memory Optimized |
+  >>    | --- | --- | --- |
+  >> - Hyperscale (Citus): The Hyperscale (Citus) option horizontally scales queries across multiple machines by using sharding\
+  >>   It serves applications that require greater scale and performance, generally workloads that are approaching, or already exceed, 100 GB of data
+  >
+- ### Explore Azure SQL Managed Instance
+
+  > - Azure SQL Managed Instance is a scalable cloud data service that provides the broadest SQL Server database engine compatibility with all the benefits of a fully managed platform as a service
+  > - supports cyrillic caracters
+  > - Azure SQL Managed Instance makes it easy to migrate your on-premises data on SQL Server to the cloud using the Azure Database Migration Service (DMS) or native backup and restore
+  > ![migrations steps](https://docs.microsoft.com/en-us/learn/azure-fundamentals/azure-database-fundamentals/media/migration-process-flow-small-a899c59c.png)
+
+- ### Explore big data and analytics
+>
+> - Microsoft Azure supports a broad range of technologies and services to provide big data and analytic solutions
+>
+> |Azure Synapse Analytics| Azure HDInsight| Azure Databricks| Azure Data Lake Analytics|
+> | ---|---|---|---|
+> |is a limitless analytics service that brings together enterprise-data warehousing and big-data analytics| is a fully managed, open-source analytics service for enterprises|helps you unlock insights from all your data and build artificial intelligence solutions| is an on-demand analytics job service that simplifies big data|
+> |You have a unified experience to ingest, prepare, manage, and serve data for immediate business intelligence and machine learning needs|You can run popular open-source frameworks and create cluster types such as Apache Spark, Apache Hadoop, Apache Kafka, Apache HBase, Apache Storm, and Machine Learning Services|Azure Databricks supports Python, Scala, R, Java, and SQL, as well as data science frameworks and libraries including TensorFlow, PyTorch, and scikit-learn|The analytics service can handle jobs of any scale instantly by setting the dial for how much power you need. You only pay for your job when it's running, making it more cost-effective|
+
+</details>
 <details>
   <summary> Describe Azure management and governance (30—35%) </summary>
 
@@ -474,7 +531,7 @@ Identify and track vulnerabilities.
 
 - ### Compare the Pricing calculator and the Total Cost of Ownership (TCO) calculator
   >
-  > - The pricing calculator is designed to give you an estimated cost for provisioning resources in Azure.\
+  > - The Azure pricing calculator is designed to give you an estimated cost for provisioning resources in Azure.\
   The pricing calculator’s focus is on the cost of provisioned resources in Azure.
   > - The TCO calculator is designed to help you compare the costs for running an on-premises infrastructure compared to an Azure Cloud infrastructure
   > - The TCO calculator involves three step
@@ -494,6 +551,8 @@ Identify and track vulnerabilities.
   >
   > - A budget is where you set a spending limit for Azure. You can set budgets based on a subscription, resource group, service type, or other criteria. When you set a budget, you will also set a budget alert. When the budget hits the budget alert level, it will trigger a budget alert that shows up in the cost alerts area.
   > - Azure Reservations are a benefit offered by Microsoft that can save you up to 72% as compared to pay-as-you-go prices.
+  > - The cost of Azure products, services, and resources can vary across locations and regions. If possible, you should use them in those locations and regions where they cost less.
+  > - Over time, one way to reduce costs is to gradually move IaaS workloads to run on platform as a service (PaaS) services.
   >
 - ### Describe the purpose of tags
   >
@@ -503,12 +562,6 @@ Identify and track vulnerabilities.
 
 ## Describe features and tools in Azure for governance and compliance
 
-- ### Describe the purpose of Azure Blueprints
-  >
-  > - Azure Blueprints lets you standardize cloud subscription or environment deployments. Instead of having to configure features like Azure Policy for each new subscription, with Azure Blueprints you can define repeatable settings and policies that are applied as new subscriptions are created
-  > - Azure Blueprints are version-able
-  > - Blueprints are JSON files
-
 - ### Describe the purpose of Azure Policy
   >
   > - Azure Policy is a service in Azure that enables you to create, assign, and manage policies that control or audit your resources
@@ -516,6 +569,20 @@ Identify and track vulnerabilities.
   > - Azure Policies are inherited, so if you set a policy at a high level, it will automatically be applied to all of the groupings that fall within the parent
   > - An Azure Policy initiative is a way of grouping related policies together. The initiative definition contains all of the policy definitions to help track your compliance state for a larger goal
 
+- ### Describe the purpose of Azure Blueprints
+  >
+  > - Azure Blueprints lets you standardize cloud subscription or environment deployments. Instead of having to configure features like Azure Policy for each new subscription, with Azure Blueprints you can define repeatable settings and policies that are applied as new subscriptions are created
+  > - Each component in the blueprint definition is known as an artifact. \
+  It is possible for artifacts to have no additional parameters (configurations)
+  > - Azure Blueprints are version-able
+  > - Blueprints are JSON files
+
+- ### Describe Cloud Adoption Framework for Azure
+  >
+  > - The Cloud Adoption Framework helps you create and implement the business and technology strategies needed to succeed in the cloud
+  > - ![cloud adoption framework](https://docs.microsoft.com/en-us/learn/azure-fundamentals/build-cloud-governance-strategy-azure/media/2-framework-stages-9b54ccbe.png)
+  >
+  >
 - ### Describe the purpose of resource locks
   >
   > - A resource lock prevents resources from being accidentally deleted or changed.
@@ -571,14 +638,16 @@ Identify and track vulnerabilities.
   >
   > | Reliability| Security |  Performance  |Operational Excellence  |Cost |
   > | --- |--- |--- |--- |--- |
+  > | Used to ensure and improve the continuity of your business-critical applications| Used to detect threats and vulnerabilities that might lead to security breaches.| Used to improve the speed of your applications| Used to help you achieve process and workflow efficiency, resource manageability, and deployment best practices| Azure Advisor identifies unused or underutilized resources and recommends unused resources that you can remove. This information helps you configure your resources to match your actual workload.|
 
 - ### Describe Azure Service Health
   >
-  > - Azure Service Health helps you keep track of Azure resource, both your specifically deployed resources and the overall status of Azure.  Azure service health does this by combining three different Azure services
+  > - Azure Service Health provides a personalized view of the health of the Azure services, regions, and resources you rely on.\
+  > Service Health helps you keep an eye on several event types
   >
-  > | Azure Status | Service Health|Resource Health |
-  > | --- | --- | --- |
-  > |is a broad picture of the status of Azure globally. Azure status informs you of service outages in Azure on the Azure Status page | provides a narrower view of Azure services and regions. It focuses on the Azure services and regions you're using. You can even set up Service Health alerts to notify you when service issues, planned maintenance, or other changes may affect the Azure services and regions you use | is a tailored view of your actual Azure resources. It provides information about the health of your individual cloud resources, such as a specific virtual machine instance. Using Azure Monitor, you can also configure alerts to notify you of availability changes to your cloud resources. |
+  > | Service issues| Planned maintenance|Health advisories |
+  > | --- |--- |--- |
+  > |are problems in Azure, such as outages, that affect you right now|  events can affect your availability.| are issues that require you to act to avoid service interruption, including service retirements and breaking changes |
 
 - ### Describe Azure Monitor, including Log Analytics, Azure Monitor alerts, and Application Insights
   >
@@ -586,8 +655,31 @@ Identify and track vulnerabilities.
   > - Azure Log Analytics is the tool in the Azure portal where you’ll write and run log queries on the data gathered by Azure Monitor
   > - Azure Monitor Alerts are an automated way to stay informed when Azure Monitor detects a threshold being crossed. You set the alert conditions, the notification actions, and then Azure Monitor Alerts notifies when an alert is triggered
   > - Azure Monitor Alerts use action groups to configure who to notify and what action to take. An action group is simply a collection of notification and action preferences that you associate with one or multiple alerts.
+  >
+  >> ![azure-monitor](https://docs.microsoft.com/en-us/learn/azure-fundamentals/monitoring-fundamentals/media/2-identify-product-options-01.png)
   >>
-  >> - Application Insights, an Azure Monitor feature, monitors your web applications. Application Insights is capable of monitoring applications that are running in Azure, on-premises, or in a different cloud environment.
-  >>
+  >> - Application Insights, an Azure Monitor feature, monitors your web applications. With Application Insights, your application developers can take advantage of the powerful data-analysis platform in Azure Monitor to gain deep insights into an application's operations and diagnose errors without having to wait for users to report them.
 
+### Describe Azure Security Center
+  >
+  > - is a monitoring service that provides visibility of your security posture across all of your services, both on Azure and on-premises.\
+       The term security posture refers to cybersecurity policies and controls, as well as how well you can predict, prevent, and respond to security threats
+  > - In the dashboard you can view its overall regulatory compliance from a security perspective all from one place.
+  >
+
+### Describe Azure Sentinel
+  >
+  > - Azure Sentinel is Microsoft's cloud-based SIEM (security information and event management) system. It uses intelligent security analytics and threat analysis.
+
+### Desribe Azure Key Vault
+>
+> - Azure Key Vault is a centralized cloud service for storing an application's secrets in a single, central location. It provides secure access to sensitive information by providing access control and logging capabilities.
+
+### Describe Azure Dedicated Host
+>
+> - Azure Dedicated Host provides dedicated physical servers to host your Azure VMs for Windows and Linux.
+> - Some organizations must follow regulatory compliance that requires them to be the only customer using the physical machine that hosts their virtual machines.
+> - You're charged per dedicated host, independent of how many VMs you deploy to it.\
+The host price is based on the VM family, type (hardware size), and region.
+>
 </details>
