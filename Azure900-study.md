@@ -85,6 +85,8 @@
 ## Describe cloud service types
 
 - ### Describe infrastructure as a service (IaaS)
+
+  > ![iaas paas saas](https://docs.microsoft.com/en-us/learn/azure-fundamentals/fundamental-azure-concepts/media/iaas-paas-saas-575a09e9.png)
   >
   > - most flexible category of cloud services
   > - With IaaS, you’re essentially renting the hardware in a cloud datacenter, , but what you do with that hardware is up to you.
@@ -232,6 +234,7 @@
   > > > - Site-to-site virtual private networks link your on-premises VPN device or gateway to the Azure VPN gateway in a virtual network.\
    The connection is encrypted and works over the internet.
   > > > - Azure ExpressRoute provides a dedicated private connectivity to Azure that doesn't travel over the internet.
+  >>> ![express route](https://docs.microsoft.com/en-us/learn/azure-fundamentals/azure-networking-fundamentals/media/azure-connectivity-models-4deabab1.png)
   > > Route network traffic
   > > > By default, Azure routes traffic between subnets on any connected virtual networks, on-premises networks, and the internet. To ovveride these settings you can:
   > > >
@@ -331,7 +334,7 @@
 
   > |Azure Blobs| Azure Files | Azure Queues | Azure Disks |
   > | --- | ---| ---| ---|
-  > | A massively scalable object store for text and binary data. Also includes support for big data analytics through Data Lake Storage Gen2 | Managed file shares for cloud or on-premises deployments | A messaging store for reliable messaging between application components | Block-level storage volumes for Azure VMs |
+  > | A massively scalable object store for text and binary data. Also includes support for big data analytics through Data Lake Storage Gen2 | Managed file shares for cloud or on-premises deployments | A messaging store for reliable messaging between application components | Block-level storage volumes for Azure VMs.  Azure Files ensures the data is encrypted at rest, and the SMB protocol ensures the data is encrypted in transit. |
   > | URLs, the Azure Storage REST API, Azure PowerShell, Azure CLI, or an Azure Storage client library |  PowerShell cmdlets and Azure CLI can be used to create, mount, and manage Azure file shares as well as Azure portal and Azure Storage Explore.  | |  |
   > | | | |
   >>
@@ -445,6 +448,16 @@ Identify and track vulnerabilities.
 
 </details>
   
+<details>
+  <summary> Explore Azure database and analytics services </summary>
+
+## Descibe azure databases and analytics services
+
+- ### Explore Azure SQL Database
+  >
+  > - Azure SQL Database is a platform as a service (PaaS) database engine. It handles most of the database-management functions — such as upgrading, patching, backups, and monitoring — without user involvemen
+  > - You can migrate your existing SQL Server databases with minimal downtime by using the Azure Database Migration Service
+  >
 <details>
   <summary> Describe Azure management and governance (30—35%) </summary>
 
@@ -576,4 +589,5 @@ Identify and track vulnerabilities.
   >>
   >> - Application Insights, an Azure Monitor feature, monitors your web applications. Application Insights is capable of monitoring applications that are running in Azure, on-premises, or in a different cloud environment.
   >>
+
 </details>
